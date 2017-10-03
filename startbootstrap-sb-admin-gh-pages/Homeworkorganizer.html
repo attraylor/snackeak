@@ -14,6 +14,18 @@
   <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
+  
+  <link href="css/cssho.css" rel="stylesheet">
+  
+   <!-- To Do List scripts and stylesheets-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/script2.js"></script>
+    <link type="text/css" rel="stylesheet" href="styles.css" />
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  
+   
+   <script src="js/scriptho.js"></script>
+  
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -224,14 +236,80 @@
         <li class="breadcrumb-item">
           <a href="index.html">Student Main</a>
         </li>
-        <li class="breadcrumb-item active">Homewor Organizer</li>
+        <li class="breadcrumb-item active">Homework Organizer</li>
       </ol>
       <div class="row">
-        <div class="col-12">
-          <h1>Blank</h1>
-          <p>This is an example of a blank page that you can use as a starting point for creating new ones.</p>
-        </div>
+        <div class="form-group">
+			<label for="sel1">Class:</label>
+			<select class="select" id="sel1" onchange="f(this)">
+				<option value ="m551">MATH 551</option>
+				<option value ="c326">COMPSCI 326</option>
+				<option value = "c453">COMPSCI 453</option>
+				<option value ="c345">COMPSCI 345</option>
+			</select>
+		</div>
+		
       </div>
+	  <div id ='m5'>
+			<div class="container" id="main">
+            <h1>Assignments</h1>
+            <form role="form" id="main_input_box1">
+                <label>
+                    <input type="text" class="form-control" id="custom_textbox" name="Item" placeholder="Assignment Name">
+					<input type="text" class="form-control" id="custom_textbox2" name="Due" placeholder="Due Date">
+                    <input type="submit" value="Add" class="btn btn-primary add_button">
+                </label>
+            </form>
+            <form>
+                <ol class="list-group list_of_items1"></ol>
+            </form>
+        </div>			
+	  </div>
+		<div class='hidden' id ='c3'>
+			<div class="container" id="main">
+            <h1>Assignments</h1>
+            <form role="form" id="main_input_box2">
+                <label>
+                    <input type="text" class="form-control" id="custom_textbox3" name="Item" placeholder="Assignment Name">
+					<input type="text" class="form-control" id="custom_textbox4" name="Due" placeholder="Due Date">
+                    <input type="submit" value="Add" class="btn btn-primary add_button">
+                </label>
+            </form>
+            <form>
+                <ol class="list-group list_of_items2"></ol>
+            </form>
+        </div>
+		</div>
+		<div class='hidden' id ='c34'>
+			<div class="container" id="main">
+            <h1>Assignments</h1>
+            <form role="form" id="main_input_box3">
+                <label>
+                    <input type="text" class="form-control" id="custom_textbox5" name="Item" placeholder="Assignment Name">
+					<input type="text" class="form-control" id="custom_textbox6" name="Due" placeholder="Due Date">
+                    <input type="submit" value="Add" class="btn btn-primary add_button">
+                </label>
+            </form>
+            <form>
+                <ol class="list-group list_of_items3"></ol>
+            </form>
+        </div>
+		</div>
+		<div class='hidden' id ='c4'>
+			<div class="container" id="main">
+            <h1>Assignments</h1>
+            <form role="form" id="main_input_box4">
+                <label>
+                    <input type="text" class="form-control" id="custom_textbox7" name="Item" placeholder="Assignment Name">
+					<input type="text" class="form-control" id="custom_textbox8" name="Due" placeholder="Due Date">
+                    <input type="submit" value="Add" class="btn btn-primary add_button">
+                </label>
+            </form>
+            <form>
+                <ol class="list-group list_of_items4"></ol>
+            </form>
+        </div>
+		</div>
     </div>
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
