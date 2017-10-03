@@ -177,11 +177,32 @@
         <li class="breadcrumb-item active">Notepad</li>
       </ol>
       <div class="row">
-        <div class="col-12">
-          <h1>Blank</h1>
-          <p>This is an example of a blank page that you can use as a starting point for creating new ones.</p>
-        </div>
+        <div class="form-group">
+      <label for="sel1">Class:</label>
+      <select class="select" id="sel1" onchange="f(this)">
+        <option value ="m551">MATH 551</option>
+        <option value ="c326">COMPSCI 326</option>
+        <option value = "c453">COMPSCI 453</option>
+        <option value ="c345">COMPSCI 345</option>
+      </select>
+    </div>
+
       </div>
+    <div id ='m5'>
+      <div class="container" id="main">
+            <h1>Notes</h1>
+            <form role="form" id="main_input_box1">
+                <label>
+                    <input type="text" class="form-control" id="custom_textbox" name="Item" placeholder="Enter Class">
+                    <textarea rows="10" cols="80" placeholder="Enter Notes"> </textarea>
+                    <input type="submit" value="Add" class="btn btn-primary add_button">
+                </label>
+            </form>
+            <form>
+                <ol class="list-group list_of_items1"></ol>
+            </form>
+        </div>
+    </div>
     </div>
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
