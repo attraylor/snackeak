@@ -8,7 +8,8 @@ class Class(models.Model):
     Model representing a Class.
     """
     name = models.CharField(max_length=200)
-    
+    start = models.DateField()
+    end = models.DateField()
     
     def __str__(self):
         """
