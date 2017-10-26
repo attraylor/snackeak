@@ -8,8 +8,13 @@ class Class(models.Model):
     Model representing a Class.
     """
     name = models.CharField(max_length=200)
-    start = models.DateField()
-    end = models.DateField()
+    monday = models.NullBooleanField()
+    tuesday = models.NullBooleanField()
+    wednesday = models.NullBooleanField()
+    thursday = models.NullBooleanField()
+    friday = models.NullBooleanField()
+    start = models.TimeField(blank = True, null = True)
+    end = models.TimeField(blank = True, null = True)
     
     def __str__(self):
         """
