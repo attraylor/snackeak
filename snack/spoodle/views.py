@@ -68,7 +68,7 @@ def Homeworkorganizer(request):
     """
     View function for home page of site.
     """
-    homeworkorganizer = Homeworkorganizer.objects.all()
+    homeworkorganizer = Homework.objects.all()
 
 
 
