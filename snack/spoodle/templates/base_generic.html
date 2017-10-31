@@ -15,6 +15,10 @@
   <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
   <!-- Custom styles for this template-->
   <link href="{% static 'css/sb-admin.css' %}" rel="stylesheet">
+  <!-- Style for the schedule-->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'css/reset.css' %}" rel="stylesheet">
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -211,6 +215,19 @@
     <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
     <!-- Custom scripts for all pages-->
     <script src="{% static 'js/sb-admin.min.js' %}"></script>
+	    <!-- Page level plugin JavaScript-->
+    <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'vendor/datatables/dataTables.bootstrap4.js' %}"></script>
+	    <!-- Custom scripts for this page-->
+    <script src="{% static 'js/sb-admin-datatables.min.js' %}"></script>
+    <script src="{% static 'js/sb-admin-charts.min.js' %}"></script>
+      <script src="{% static 'js/modernizr.js' %}"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+      <script>
+          if (!window.jQuery) document.write('<script src="js/jquery-3.0.0.min.js"><\/script>');
+      </script>
+      <script src="{% static 'js/main.js' %}"></script> <!-- Resource jQuery -->
   </div>
 </body>
 

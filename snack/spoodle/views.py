@@ -7,7 +7,7 @@ def index(request):
     """
     View function for home page of site.
     """
-    classses = Class.objects.all()
+    classes = Class.objects.all()
 
 
     
