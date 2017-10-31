@@ -1,0 +1,48 @@
+{% extends "base_generic.html" %}
+
+{% block title %}<title> notes page</title> {% endblock %}
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+   <link href="css/style.css" rel="stylesheet">
+    <link href="css/reset.css" rel="stylesheet">
+
+
+{% block content %}
+
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="index.html">Student Main</a>
+        </li>
+        <li class="breadcrumb-item active">Notepad</li>
+      </ol>
+      <div class="row">
+        <div class="form-group">
+      <label for="sel1">Class:</label>
+      <select class="select" id="sel1" onchange="f(this)">
+        <option value ="m551">MATH 551</option>
+        <option value ="c326">COMPSCI 326</option>
+        <option value = "c453">COMPSCI 453</option>
+        <option value ="c345">COMPSCI 345</option>
+      </select>
+    </div>
+
+      </div>
+    <div id ='m5'>
+      <div class="container" id="main">
+            <h1>Notes</h1>
+            <form role="form" id="main_input_box1">
+                <label>
+                    <input type="text" class="form-control" id="custom_textbox" name="Item" placeholder="Enter Class">
+                    <textarea rows="10" cols="80" placeholder="Enter Notes"> </textarea>
+                    <input type="submit" value="Add" class="btn btn-primary add_button">
+                </label>
+            </form>
+            <form>
+                <ol class="list-group list_of_items1"></ol>
+            </form>
+        </div>
+    </div>
+    </div>
+
+  {% endblock %}
