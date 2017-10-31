@@ -33,3 +33,48 @@ def todo(request):
         'todo.html',
         context={'todos':todos},
     )
+
+def notepad(request):
+    """
+    View function for home page of site.
+    """
+    notepad = Notepad.objects.all()
+
+
+
+    # Render the HTML template index.html with the data in the context variable
+    return render(
+        request,
+        'notepad.html',
+        context={'notepad':notepad},
+    )
+
+def contact(request):
+    """
+    View function for home page of site.
+    """
+    contact = Contact.objects.all()
+
+
+
+    # Render the HTML template index.html with the data in the context variable
+    return render(
+        request,
+        'contact.html',
+        context={'contact':contact},
+    )
+
+def Homeworkorganizer(request):
+    """
+    View function for home page of site.
+    """
+    homeworkorganizer = Homeworkorganizer.objects.all()
+
+
+
+    # Render the HTML template index.html with the data in the context variable
+    return render(
+        request,
+        'Homeworkorganizer.html',
+        context={'homeworkorganizer':homeworkorganizer},
+    )
