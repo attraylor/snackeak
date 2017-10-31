@@ -90,4 +90,7 @@ class Note(models.Model):
     title = models.CharField(max_length=100)
     note = models.TextField()
     classes = models.ForeignKey(Class)
+	
+    def __str__(self):
+        return self.title
 
