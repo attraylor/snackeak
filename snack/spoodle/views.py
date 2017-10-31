@@ -78,3 +78,19 @@ def Homeworkorganizer(request):
         'Homeworkorganizer.html',
         context={'homeworkorganizer':homeworkorganizer},
     )
+
+
+def studygroup(request):
+    """
+    View function for home page of site.
+    """
+    students = Student.objects.all()
+
+
+
+    # Render the HTML template index.html with the data in the context variable
+    return render(
+        request,
+        'studygroup.html',
+        context={'students':students},
+    )
