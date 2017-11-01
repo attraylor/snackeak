@@ -38,7 +38,7 @@ def notepad(request):
     """
     View function for home page of site.
     """
-    notepad = Notepad.objects.all()
+    notepad = Note.objects.all()
 
 
 
@@ -53,7 +53,7 @@ def contact(request):
     """
     View function for home page of site.
     """
-    contact = Contact.objects.all()
+    contact = Professor.objects.all()
 
 
 
