@@ -14,14 +14,14 @@
       <div class="row">
         <div class="col-12">
           <h1>Professors</h1>
-          <div style="width:500px;height:100px;border:1px solid #000;">Professor: James Cameron
-            <p>Email: jamesCameron@gmail.com</p>
-            <p>Phone: 800-000-0000</p>
+          {% for contact in contact %}
+          <div style="width:500px;height:100px;border:1px solid #000;">Professor: {{contact.name}}
+            <p>Email: {{contact.email}}</p>
+            <p>Phone: {{contact.phone}}</p>
+            <p>Office: {{contact.office}}</p>
+            <p>Office Hours: {{contact.hours}}</p>
           </div>
-          <div style="width:500px;height:100px;border:1px solid #000;">Professor: hamilton esquire
-            <p>Email: goinHAM@gmail.com</p>
-            <p>Phone: 800-000-0000</p>
-          </div>
+          {% endfor %}
 
         </div>
       </div>

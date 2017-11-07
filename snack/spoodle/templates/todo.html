@@ -12,7 +12,7 @@
 </ol>
 <!-- To Do List Code all here-->
   <div class="container" id="main">
-      <h1>To Do List</h1>
+      <h1 style = strong>To Do List</h1>
       <form role="form" id="main_input_box">
           <label>
               <input type="text" class="form-control" id="custom_textbox" name="Item" placeholder="What do you need to do?">
@@ -20,7 +20,12 @@
           </label>
       </form>
       <form>
-          <ol class="list-group list_of_items"></ol>
+          <ol class="list-group list_of_items">
+          {% for todo in todos %}
+          <li>
+            <h2>{{forloop.counter}}. {{todo}}</h2>
+          </li>
+         {% endfor %}</ol>
       </form>
   </div>
 
