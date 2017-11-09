@@ -29,7 +29,7 @@ class Student(models.Model):
     name = models.CharField(max_length=200)
     classes = models.ManyToManyField(Class)
     id = models.CharField('ID',max_length=8, help_text='8 digit Student ID number',primary_key=True)
-    
+    email = models.EmailField(primary_key=True)
     
     def __str__(self):
         """
