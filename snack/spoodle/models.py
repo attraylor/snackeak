@@ -2,17 +2,20 @@ from django.db import models
 
 # Create your models here.
 
+from datetime import datetime
 
 class Class(models.Model):
     """
     Model representing a Class.
     """
     name = models.CharField(max_length=200)
+    
     monday = models.NullBooleanField()
     tuesday = models.NullBooleanField()
     wednesday = models.NullBooleanField()
     thursday = models.NullBooleanField()
     friday = models.NullBooleanField()
+    
     start = models.TimeField(blank = True, null = True)
     end = models.TimeField(blank = True, null = True)
     
@@ -21,6 +24,20 @@ class Class(models.Model):
         String for representing the Model object.
         """
         return self.name
+
+    def startTime(self):
+        """
+        return a 24 hour formatted start time
+        """
+        start = str(self.start)
+        return start[:len(start)-3]
+
+    def endTime(self):
+        """
+        return a 24 hour formatted END time
+        """
+        end = str(self.end)
+        return end[:len(end)-3]
 		
 class Student(models.Model):
     """
