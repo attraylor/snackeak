@@ -13,27 +13,34 @@
     <div class="card card-login mx-auto mt-5">
       <div class="card-header">Login</div>
       <div class="card-body">
-        <form>
+		{% if form.errors %}
+		<p>Your username and password didn't match. Please try again.</p>
+		{% endif %}
+
+		{% if next %}
+			{% if user.is_authenticated %}
+				<p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
+			{% else %}
+				<p>Please login to see your information.</p>
+			{% endif %}
+		{% endif %}
+		<br/>
+        <form method="post" action="{% url 'login' %}">
+		{% csrf_token %}
+
           <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email">
+		    <td>{{ form.username.label_tag }}</td>
+			<td>{{ form.username }}</td>
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input class="form-control" id="exampleInputPassword1" type="password" placeholder="Password">
+            <td>{{ form.password.label_tag }}</td>
+			<td>{{ form.password }}</td>
           </div>
-          <div class="form-group">
-            <div class="form-check">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox"> Remember Password</label>
-            </div>
-          </div>
-          <a class="btn btn-primary btn-block" href="index.html">Login</a>
-        </form>
-        <div class="text-center">
-          <a class="d-block small mt-3" href="register.html">Register an Account</a>
-          <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
-        </div>
+			<div>
+			  <input type="submit" value="login" />
+			  <input type="hidden" name="next" value="{{ next }}" />
+			</div>        
+		</form>
       </div>
     </div>
   </div>
