@@ -26,7 +26,7 @@
           <ol class="list-group list_of_items">
           {% for todo in todos %}
           <li>
-            <h2>{{forloop.counter}}. {{todo}}</h2>
+            <h2>{{forloop.counter}}. {{todo}} <a href="{% url 'todo_update' todo.pk %}">Update</a> <a href="{% url 'todo_delete' todo.pk %}">Delete</a></h2>
           </li>
          {% endfor %}</ol>
       </form>

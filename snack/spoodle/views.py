@@ -122,7 +122,7 @@ def todo_new(request):
         if form.is_valid():
             print("post valid")
             todo_inst = form.save(commit=False)
-            
+
             todo_inst.activity = form.cleaned_data["activity"]
             todo_inst.student = Student.objects.filter(email =request.user.email)[0]
             if request.user.is_authenticated():
@@ -175,14 +175,15 @@ def note_new(request):
         form = TodoForm()
     return render(request, 'todo.html', {'form': form})
 
-'''
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
 class TodoUpdate(UpdateView):
     model = Todo
     fields = ['activity']
+    def get_success_url(self):
+        return reverse('todo')
 
 class TodoDelete(DeleteView):
     model = Todo
-    success_url = reverse_lazy('todo')'''
+    success_url = reverse_lazy('todo')

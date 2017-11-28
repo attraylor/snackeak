@@ -13,5 +13,6 @@ urlpatterns = [
     url(r'^todo/newtodo/', views.todo_new, name='new_todo_elem'),
     url(r'^studygroup/newchat/', views.chat_new, name='new_chat_elem'),
     url(r'^notepad/newnote/', views.note_new, name='new_note_elem'),
-
+    url(r'^todo/(?P<pk>\d+)/update/$', views.TodoUpdate.as_view(), name='todo_update'),
+    url(r'^todo/(?P<pk>\d+)/delete/$', views.TodoDelete.as_view(), name='todo_delete'),
 ]
