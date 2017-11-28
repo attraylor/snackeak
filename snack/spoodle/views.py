@@ -27,7 +27,7 @@ def todo(request):
     """
     View function for home page of site.
     """
-    print "reachedtodo"
+    print("reachedtodo")
     todos = Todo.objects.filter(student__email = request.user.email)
 
 
@@ -112,64 +112,64 @@ from django.core.urlresolvers import reverse
 from .forms import TodoForm, ClassChatForm
 
 def todo_new(request):
-    print "reached todonew"
+    print("reached todonew")
     if request.method == "POST":
         form = TodoForm(request.POST)
-        print "post", form.is_valid()
+        print("post", form.is_valid())
         if form.is_valid():
-            print "post valid"
+            print("post valid")
             todo_inst = form.save(commit=False)
-            print type(todo_inst)
+            
             todo_inst.activity = form.cleaned_data["activity"]
             todo_inst.student = Student.objects.filter(email =request.user.email)[0]
             if request.user.is_authenticated():
-                print "user authenticated!"
+                print("user authenticated!")
             todo_inst.save()
             return HttpResponseRedirect(reverse('todo'))
     else: #GET
-        print "get"
+        print("get")
         form = TodoForm()
     return render(request, 'todo.html', {'form': form})
 
 from time import gmtime, strftime
 def chat_new(request):
-    print "reached chatnew"
+    print("reached chatnew")
     if request.method == "POST":
         form = ClassChatForm(request.POST)
-        print "post", form.is_valid()
+        print("post", form.is_valid())
         if form.is_valid():
-            print "post valid"
+            print("post valid")
             class_inst = form.save(commit=False)
             class_to_update = Class.objects.filter(student__email=request.user.email)[0]
             student_name = Student.objects.filter(email=request.user.email)[0]
             class_to_update.chat += "{} {}:\t{}\n".format(strftime("%Y-%m-%d %H:%M:%S", gmtime()), student_name.name, form.cleaned_data["chat"])
             class_to_update.save()
             if request.user.is_authenticated():
-                print "user authenticated!"
+                print("user authenticated!")
             class_to_update.save()
             return HttpResponseRedirect(reverse('studygroup'))
     else: #GET
-        print "get"
+        print("get")
         form = ClassChatForm()
     return render(request, 'studygroup.html', {'form': form})
 
 def note_new(request):
-    print "reached note_new"
+    print("reached note_new")
     if request.method == "POST":
         form = NoteForm(request.POST)
-        print "post", form.is_valid()
+        print("post", form.is_valid())
         if form.is_valid():
-            print "post valid"
+            print("post valid")
             note_inst = form.save(commit=False)
             note_inst.note = form.cleaned_data["note"]
             note_inst.classes = form.cleaned_data["class"]
             note_inst.title = form.cleaned_data["class"]
             if request.user.is_authenticated():
-                print "user authenticated!"
+                print("user authenticated!")
             todo_inst.save()
             return HttpResponseRedirect(reverse('todo'))
     else: #GET
-        print "get"
+        print("get")
         form = TodoForm()
     return render(request, 'todo.html', {'form': form})
 
