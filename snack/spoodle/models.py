@@ -19,6 +19,8 @@ class Class(models.Model):
     start = models.TimeField(blank = True, null = True)
     end = models.TimeField(blank = True, null = True)
     
+    chat = models.TextField()
+    
     def __str__(self):
         """
         String for representing the Model object.
@@ -45,7 +47,7 @@ class Student(models.Model):
     """
     name = models.CharField(max_length=200)
     classes = models.ManyToManyField(Class)
-    id = models.CharField('ID',max_length=8, help_text='8 digit Student ID number',primary_key=True)
+    id = models.CharField('ID',max_length=8, help_text='8 digit Student ID number')
     email = models.EmailField(primary_key=True)
     
     def __str__(self):
@@ -72,7 +74,7 @@ class Professor(models.Model):
     Model representing a professor.
     """
     name = models.CharField(max_length=200)
-    email = models.EmailField()
+    email = models.EmailField(primary_key=True)
     phone = models.CharField(max_length=10, help_text='Ten digit phone number, no dashes')
     office = models.CharField(max_length=100)
     hours = models.CharField(max_length=100)
