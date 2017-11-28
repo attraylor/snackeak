@@ -1,6 +1,6 @@
 {% extends "base_generic.html" %}
 
-{% block title %}<title>SB Admin - Start Bootstrap Template</title> {% endblock %}
+{% block title %}<title>Spoodle-Homework</title> {% endblock %}
 
 {% block content %}
 
@@ -11,78 +11,29 @@
         </li>
         <li class="breadcrumb-item active">Homework Organizer</li>
       </ol>
-      <div class="row">
-        <div class="form-group">
-			<label for="sel1">Class:</label>
-			<select class="select" id="sel1" onchange="f(this)">
-				<option value ="m551">MATH 551</option>
-				<option value ="c326">COMPSCI 326</option>
-				<option value = "c453">COMPSCI 453</option>
-				<option value ="c345">COMPSCI 345</option>
-			</select>
-		</div>
+      
+        
+		<div class="row">
+        <div class="col-12">
+          <h1 style="font-weight:bold">Assignments</h1>
+          <p><br></br></p>
+          {% for class in classlist %}
+          <div style="width:500px;height:100px;border:1px solid #000"><p style=";text-decoration:underline">{{class.name}}:</p>
+          {% for hw in homeworkorganizer %}
+          {% if hw.classes == class %}
+            <p><br></br></p>
+            <p style="text-indent: 4em">-{{hw.title}}</p>
+            <p style="text-indent: 5em">Due: {{hw.duedate}}</p>
+          {% endif %}
+          </div>
+          {% endfor %}
+          
+          {% endfor %}
+          </div>
 
-      </div>
-	  <div id ='m5'>
-			<div class="container" id="main">
-            <h1>Assignments</h1>
-            <form role="form" id="main_input_box1">
-                <label>
-                    <input type="text" class="form-control" id="custom_textbox" name="Item" placeholder="Assignment Name">
-					<input type="text" class="form-control" id="custom_textbox2" name="Due" placeholder="Due Date">
-                    <input type="submit" value="Add" class="btn btn-primary add_button">
-                </label>
-            </form>
-            <form>
-                <ol class="list-group list_of_items1"></ol>
-            </form>
         </div>
-	  </div>
-		<div class='hidden' id ='c3'>
-			<div class="container" id="main">
-            <h1>Assignments</h1>
-            <form role="form" id="main_input_box2">
-                <label>
-                    <input type="text" class="form-control" id="custom_textbox3" name="Item" placeholder="Assignment Name">
-					<input type="text" class="form-control" id="custom_textbox4" name="Due" placeholder="Due Date">
-                    <input type="submit" value="Add" class="btn btn-primary add_button">
-                </label>
-            </form>
-            <form>
-                <ol class="list-group list_of_items2"></ol>
-            </form>
-        </div>
+	  
 		</div>
-		<div class='hidden' id ='c34'>
-			<div class="container" id="main">
-            <h1>Assignments</h1>
-            <form role="form" id="main_input_box3">
-                <label>
-                    <input type="text" class="form-control" id="custom_textbox5" name="Item" placeholder="Assignment Name">
-					<input type="text" class="form-control" id="custom_textbox6" name="Due" placeholder="Due Date">
-                    <input type="submit" value="Add" class="btn btn-primary add_button">
-                </label>
-            </form>
-            <form>
-                <ol class="list-group list_of_items3"></ol>
-            </form>
-        </div>
-		</div>
-		<div class='hidden' id ='c4'>
-			<div class="container" id="main">
-            <h1>Assignments</h1>
-            <form role="form" id="main_input_box4">
-                <label>
-                    <input type="text" class="form-control" id="custom_textbox7" name="Item" placeholder="Assignment Name">
-					<input type="text" class="form-control" id="custom_textbox8" name="Due" placeholder="Due Date">
-                    <input type="submit" value="Add" class="btn btn-primary add_button">
-                </label>
-            </form>
-            <form>
-                <ol class="list-group list_of_items4"></ol>
-            </form>
-        </div>
-		</div>
-    </div>
+    
 
   {% endblock %}
