@@ -19,7 +19,16 @@
           <p><br></br></p>
           {% for class in classlist %}
           <div style="width:500px;height:100px;border:1px solid #000;">{{class.chat|linebreaks}}
-          <p>**INSERT FORM TO ADD TO CHAT HERE</p>
+          <p>
+            <form role="form" action="newchat/" method="post">
+              {% csrf_token %}
+              {{ form.errors }}
+              {{ form.non_field_errors }}
+                <label>
+                    <input type="text" class="form-control" id="" name="chat" placeholder="Type a message...">
+                    <input type="submit" value="Send Message" class="btn btn-primary add_button">
+                </label>
+            </form></p>
           <p><br></br></p>
           </div>
           {% endfor %}

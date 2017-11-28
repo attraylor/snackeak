@@ -109,7 +109,7 @@ def studygroup(request):
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from .forms import TodoForm
+from .forms import TodoForm, ClassChatForm
 
 def todo_new(request):
     print "reached todonew"
@@ -130,3 +130,37 @@ def todo_new(request):
         print "get"
         form = TodoForm()
     return render(request, 'todo.html', {'form': form})
+
+from time import gmtime, strftime
+def chat_new(request):
+    print "reached chatnew"
+    if request.method == "POST":
+        form = ClassChatForm(request.POST)
+        print "post", form.is_valid()
+        if form.is_valid():
+            print "post valid"
+            class_inst = form.save(commit=False)
+            class_to_update = Class.objects.filter(student__email=request.user.email)[0]
+            student_name = Student.objects.filter(email=request.user.email)[0]
+            class_to_update.chat += "{} {}:\t{}\n".format(strftime("%Y-%m-%d %H:%M:%S", gmtime()), student_name.name, form.cleaned_data["chat"])
+            class_to_update.save()
+            if request.user.is_authenticated():
+                print "user authenticated!"
+            class_to_update.save()
+            return HttpResponseRedirect(reverse('studygroup'))
+    else: #GET
+        print "get"
+        form = ClassChatForm()
+    return render(request, 'studygroup.html', {'form': form})
+
+'''
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+
+class TodoUpdate(UpdateView):
+    model = Todo
+    fields = ['activity']
+
+class TodoDelete(DeleteView):
+    model = Todo
+    success_url = reverse_lazy('todo')'''
