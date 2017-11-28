@@ -3,7 +3,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
-from .models import Todo, Class, Note
+from .models import Todo, Class, Note, ChatPost
 
 '''
 class TodoForm(forms.Form):
@@ -22,12 +22,11 @@ class TodoForm(forms.ModelForm):
 		#todotext = forms.CharField(help_text="Write your todo item here.")
 
 class ClassChatForm(forms.ModelForm):
-	def clean_chat(self):
-		data = self.cleaned_data['chat']
-		return data
+	
+	
 	class Meta:
-		model = Class
-		fields = ("chat",)
+		model = ChatPost
+		exclude = ("datetime", "student")
 
 class NoteForm(forms.ModelForm):
 	def clean_note(self):

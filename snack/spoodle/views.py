@@ -2,9 +2,13 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
+from .forms import TodoForm, ClassChatForm
 
 # Create your views here.
-from .models import Class, Student, Todo, Professor, Homework, Note
+from .models import Class, Student, Todo, Professor, Homework, Note, ChatPost
 
 @login_required
 def index(request):
@@ -95,21 +99,20 @@ def studygroup(request):
     """
     View function for home page of site.
     """
+    
     classlist = Class.objects.filter(student__email=request.user.email)
-
+    chatposts = ChatPost.objects.filter(classs__in=classlist)
+    form = ClassChatForm()
 
 
     # Render the HTML template index.html with the data in the context variable
     return render(
         request,
         'studygroup.html',
-        context={'classlist':classlist},
+        context={'classlist':classlist, 'form':form, 'chatposts':chatposts},
     )
 
-from django.shortcuts import get_object_or_404
-from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse
-from .forms import TodoForm, ClassChatForm
+
 
 def todo_new(request):
     print("reached todonew")
@@ -139,14 +142,13 @@ def chat_new(request):
         print("post", form.is_valid())
         if form.is_valid():
             print("post valid")
-            class_inst = form.save(commit=False)
-            class_to_update = Class.objects.filter(student__email=request.user.email)[0]
-            student_name = Student.objects.filter(email=request.user.email)[0]
-            class_to_update.chat += "{} {}:\t{}\n".format(strftime("%Y-%m-%d %H:%M:%S", gmtime()), student_name.name, form.cleaned_data["chat"])
-            class_to_update.save()
+            chat_inst = form.save(commit=False)
+            chat_inst.student = request.user.username
+            
+            
             if request.user.is_authenticated():
                 print("user authenticated!")
-            class_to_update.save()
+            chat_inst.save()
             return HttpResponseRedirect(reverse('studygroup'))
     else: #GET
         print("get")

@@ -18,20 +18,26 @@
           <h1 style="font-weight:bold">Your Chats</h1>
           <p><br></br></p>
           {% for class in classlist %}
-          <div style="width:500px;overflow:auto;border:1px solid #000;">{{class.chat|linebreaks}}
-          <p>
-            <form role="form" action="newchat/" method="post">
-              {% csrf_token %}
-              {{ form.errors }}
-              {{ form.non_field_errors }}
-                <label>
-                    <input type="text" class="form-control" id="" name="chat" placeholder="Type a message...">
-                    <input type="submit" value="Send Message" class="btn btn-primary add_button">
-                </label>
-            </form></p>
-          <p><br></br></p>
+          <div style="width:500px;overflow:auto;border:1px solid #000;">
+                <p style="text-decoration:underline">{{class.name}}</p><br></br>
+                {% for chat in chatposts %}
+                
+                {% if chat.classs == class %}
+                <p>{{chat.student}}: {{chat.message}} ({{chat.time}})</p><br></br>
+                {% endif %}
+                {% endfor %}
           </div>
           {% endfor %}
+		  <br> </br>
+		  <p>
+            <form action="newchat/" method="POST">
+			<label>New Message</label><br></br>
+              {% csrf_token %}
+					{{ form }}
+                    <input type="submit" value="Submit"">
+                
+            </form></p>
+          <p><br></br></p>
 
         </div>
       </div>

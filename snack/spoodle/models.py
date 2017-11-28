@@ -8,7 +8,7 @@ class Class(models.Model):
     """
     Model representing a Class.
     """
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, primary_key=True)
     
     monday = models.NullBooleanField()
     tuesday = models.NullBooleanField()
@@ -19,7 +19,7 @@ class Class(models.Model):
     start = models.TimeField(blank = True, null = True)
     end = models.TimeField(blank = True, null = True)
     
-    chat = models.TextField()
+    
     
     def __str__(self):
         """
@@ -113,3 +113,10 @@ class Note(models.Model):
     def __str__(self):
         return self.title
 
+from datetime import datetime
+
+class ChatPost(models.Model):
+    student = models.CharField(max_length=100)
+    message = models.CharField(max_length=144)
+    classs = models.ForeignKey(Class)
+    time = models.DateTimeField(default = datetime.now)
