@@ -153,6 +153,26 @@ def chat_new(request):
         form = ClassChatForm()
     return render(request, 'studygroup.html', {'form': form})
 
+def note_new(request):
+    print "reached note_new"
+    if request.method == "POST":
+        form = NoteForm(request.POST)
+        print "post", form.is_valid()
+        if form.is_valid():
+            print "post valid"
+            note_inst = form.save(commit=False)
+            note_inst.note = form.cleaned_data["note"]
+            note_inst.classes = form.cleaned_data["class"]
+            note_inst.title = form.cleaned_data["class"]
+            if request.user.is_authenticated():
+                print "user authenticated!"
+            todo_inst.save()
+            return HttpResponseRedirect(reverse('todo'))
+    else: #GET
+        print "get"
+        form = TodoForm()
+    return render(request, 'todo.html', {'form': form})
+
 '''
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
