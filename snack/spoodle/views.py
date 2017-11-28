@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+
 
 # Create your views here.
 from .models import Class, Student, Todo, Professor, Homework, Note
@@ -104,12 +106,27 @@ def studygroup(request):
         context={'classlist':classlist},
     )
 
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
+from .forms import TodoForm
+
 def todo_new(request):
     print "reached todonew"
     if request.method == "POST":
         form = TodoForm(request.POST)
+        print "post", form.is_valid()
         if form.is_valid():
-            form.save()
-            return render(request, 'todo.html', {'form': form})
-        else: #GET
-            return render(request, 'todo.html', {'form': form})
+            print "post valid"
+            todo_inst = form.save(commit=False)
+            print type(todo_inst)
+            todo_inst.activity = form.cleaned_data["activity"]
+            todo_inst.student = Student.objects.filter(email =request.user.email)[0]
+            if request.user.is_authenticated():
+                print "user authenticated!"
+            todo_inst.save()
+            return HttpResponseRedirect(reverse('todo'))
+    else: #GET
+        print "get"
+        form = TodoForm()
+    return render(request, 'todo.html', {'form': form})

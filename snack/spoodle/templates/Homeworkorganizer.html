@@ -18,7 +18,7 @@
           <h1 style="font-weight:bold">Assignments</h1>
           <p><br></br></p>
           {% for class in classlist %}
-          <div style="width:500px;height:100px;border:1px solid #000"><p style=";text-decoration:underline">{{class.name}}:</p>
+          <div style="width:500px;overflow:auto;border:1px solid #000"><p style=";text-decoration:underline">{{class.name}}:</p>
           {% for hw in homeworkorganizer %}
           {% if hw.classes == class %}
             <p><br></br></p>
