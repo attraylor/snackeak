@@ -1,14 +1,16 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 from .models import Class, Student, Todo, Professor, Homework, Note
 
+@login_required
 def index(request):
     """
     View function for home page of site.
     """
-    classes = Class.objects.all()
-
+    classes = Class.objects.filter(student__email=request.user.email)
+    
 
 
     # Render the HTML template index.html with the data in the context variable
@@ -18,7 +20,7 @@ def index(request):
         context={'classes':classes},
     )
 
-
+@login_required
 def todo(request):
     """
     View function for home page of site.
@@ -34,11 +36,13 @@ def todo(request):
         context={'todos':todos},
     )
 
+@login_required
 def notepad(request):
     """
     View function for home page of site.
     """
-    notepad = Note.objects.all()
+    classlist = Class.objects.filter(student__email=request.user.email)
+    notepad = Note.objects.filter(classes__in=classlist)
 
 
 
@@ -46,14 +50,16 @@ def notepad(request):
     return render(
         request,
         'notepad.html',
-        context={'notepad':notepad},
+        context={'notepad':notepad, 'classlist':classlist},
     )
 
+@login_required
 def contact(request):
     """
     View function for home page of site.
     """
-    contact = Professor.objects.all()
+    classlist = Class.objects.filter(student__email=request.user.email)
+    contact = Professor.objects.filter(classes__in=classlist)
 
 
 
@@ -64,11 +70,13 @@ def contact(request):
         context={'contact':contact},
     )
 
+@login_required
 def Homeworkorganizer(request):
     """
     View function for home page of site.
     """
-    homeworkorganizer = Homework.objects.all()
+    classlist = Class.objects.filter(student__email=request.user.email)
+    homeworkorganizer = Homework.objects.filter(classes__in=classlist)
 
 
 
@@ -76,15 +84,15 @@ def Homeworkorganizer(request):
     return render(
         request,
         'Homeworkorganizer.html',
-        context={'homeworkorganizer':homeworkorganizer},
+        context={'homeworkorganizer':homeworkorganizer, 'classlist':classlist},
     )
 
-
+@login_required
 def studygroup(request):
     """
     View function for home page of site.
     """
-    students = Student.objects.all()
+    classlist = Class.objects.filter(student__email=request.user.email)
 
 
 
@@ -92,5 +100,5 @@ def studygroup(request):
     return render(
         request,
         'studygroup.html',
-        context={'students':students},
+        context={'classlist':classlist},
     )
