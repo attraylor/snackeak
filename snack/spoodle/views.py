@@ -23,7 +23,7 @@ def todo(request):
     """
     View function for home page of site.
     """
-    todos = Todo.objects.all()
+    todos = Todo.objects.filter(student__email = request.user.email)
 
 
 
