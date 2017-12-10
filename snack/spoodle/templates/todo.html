@@ -1,6 +1,6 @@
 {% extends "base_generic.html" %}
 
-{% block title %}<title>SB Admin - Start Bootstrap Template</title> {% endblock %}
+{% block title %}<title>Spoodle- ToDo</title> {% endblock %}
 
 {% block content %}
 
@@ -12,7 +12,19 @@
 </ol>
 <!-- To Do List Code all here-->
   <div class="container" id="main">
-      <h1 style = strong>To Do List</h1>
+      <h1 style = "font-weight:bold">To Do List</h1>
+      <p><br></br></p>
+      <form>
+          <ol class="list-group list_of_items">
+          {% for todo in todos %}
+          <li>
+            <h2>{{forloop.counter}}. {{todo}} <a href="{% url 'todo_update' todo.pk %}">Update</a> <a href="{% url 'todo_delete' todo.pk %}">Delete</a></h2>
+          </li>
+         {% endfor %}</ol>
+      </form>
+      <p><br></br></p>
+      <h1 style="font-weight:bold">New Todo</h1>
+      
       <form role="form" action="newtodo/" method="post">
         {% csrf_token %}
         {{ form.errors }}
@@ -21,14 +33,6 @@
               <input type="text" class="form-control" id="" name="activity" placeholder="What do you need to do?">
               <input type="submit" value="Add" class="btn btn-primary add_button">
           </label>
-      </form>
-      <form>
-          <ol class="list-group list_of_items">
-          {% for todo in todos %}
-          <li>
-            <h2>{{forloop.counter}}. {{todo}} <a href="{% url 'todo_update' todo.pk %}">Update</a> <a href="{% url 'todo_delete' todo.pk %}">Delete</a></h2>
-          </li>
-         {% endfor %}</ol>
       </form>
   </div>
 

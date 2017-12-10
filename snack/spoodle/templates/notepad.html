@@ -18,30 +18,32 @@
           <p><br></br></p>
           {% for class in classlist %}
           <div style="width:500px;overflow:auto;minimum-height:100px;border:1px solid #000"><p style=";text-decoration:underline">{{class.name}}:</p>
-            <form role="form" action="newnote/" method="post">
-              {% csrf_token %}
-              {{ form.errors }}
-              {{ form.non_field_errors }}
-                <label>
-                    <input type="text" class="form-control" id="" name="note" placeholder="Write a new note...">
-                    <input type="text" class="form-control" id="" name="classes" placeholder="class name">
-                    <input type="text" class="form-control" id="" name="title" placeholder="title">
-                    <input type="submit" value="New Note" class="btn btn-primary add_button">
-                </label>
-            </form>
+            
           {% for note in notepad %}
           {% if note.classes == class %}
             <p><br></br></p>
-            <p style="text-indent: 4em">-{{note.title}}</p>
+            <p>-{{note.title}}</p>
             <p style="text-indent: 5em">{{note.note}}</p>
           {% endif %}
-          </div>
+          
           {% endfor %}
-
+            </div>
           {% endfor %}
+          <p><br></br></p>
+          <p>
+            <form action="newnote/" method="POST">
+			<label style="font-weight:bold">New Note</label><br></br>
+              {% csrf_token %}
+					{{ form }}
+                    <input type="submit" value="Submit">
+                
+            </form></p>
           </div>
+          
+           
 
         </div>
+       
 
 
   {% endblock %}

@@ -29,9 +29,7 @@ class ClassChatForm(forms.ModelForm):
 		exclude = ("datetime", "student")
 
 class NoteForm(forms.ModelForm):
-	def clean_note(self):
-		data = self.cleaned_data["note","classes", "title"]
-		return data
+	
 	class Meta:
 		model = Note
 		fields = ("note","classes", "title")

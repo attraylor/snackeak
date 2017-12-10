@@ -31,10 +31,10 @@
 		  <br> </br>
 		  <p>
             <form action="newchat/" method="POST">
-			<label>New Message</label><br></br>
+			<label style="font-weight:bold">New Message</label><br></br>
               {% csrf_token %}
 					{{ form }}
-                    <input type="submit" value="Submit"">
+                    <input type="submit" value="Submit">
                 
             </form></p>
           <p><br></br></p>

@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from .forms import TodoForm, ClassChatForm
+from .forms import TodoForm, ClassChatForm, NoteForm
 
 # Create your views here.
 from .models import Class, Student, Todo, Professor, Homework, Note, ChatPost
@@ -50,14 +50,14 @@ def notepad(request):
     """
     classlist = Class.objects.filter(student__email=request.user.email)
     notepad = Note.objects.filter(classes__in=classlist)
-
+    form = NoteForm()
 
 
     # Render the HTML template index.html with the data in the context variable
     return render(
         request,
         'notepad.html',
-        context={'notepad':notepad, 'classlist':classlist},
+        context={'notepad':notepad, 'form':form, 'classlist':classlist},
     )
 
 @login_required
@@ -163,17 +163,14 @@ def note_new(request):
         if form.is_valid():
             print("post valid")
             note_inst = form.save(commit=False)
-            note_inst.note = form.cleaned_data["note"]
-            note_inst.classes = form.cleaned_data["class"]
-            note_inst.title = form.cleaned_data["class"]
             if request.user.is_authenticated():
                 print("user authenticated!")
-            todo_inst.save()
-            return HttpResponseRedirect(reverse('todo'))
+            note_inst.save()
+            return HttpResponseRedirect(reverse('notepad'))
     else: #GET
         print("get")
-        form = TodoForm()
-    return render(request, 'todo.html', {'form': form})
+        form = NoteForm()
+    return render(request, 'notepad.html', {'form': form})
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
