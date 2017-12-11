@@ -24,6 +24,7 @@ from django.conf.urls import include
 
 urlpatterns += [
     url(r'^spoodle/', include('spoodle.urls')),
+
 ]
 
 from django.views.generic import RedirectView
